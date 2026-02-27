@@ -21,7 +21,7 @@
         </div>
     </div>
 
-        <div class="w-full md:w-1/2 mx-auto text-center flex flex-col items-center">
+        <div class="w-full md:w-1/2 mx-auto text-center flex flex-col items-center mb-25">
             <h1 class="text-4xl font-bold text-black mb-6">Bottom Section Title</h1>
             <p class="text-xl text-black-100 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -56,45 +56,78 @@
 
         </div>
     </div>
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-4xl">&times;</button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-lg shadow-2xl">
+    </div>
 
  <script>
+// Function to open Lightbox
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = src;
+    lightbox.classList.remove('hidden');
+    // Stop body scroll when open
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to close Lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('hidden');
+    // Restore scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Update your existing createInfiniteCarousel function
 function createInfiniteCarousel(trackId, speed) {
     const track = document.getElementById(trackId);
+    let isPaused = false;
 
-    // Clone once (cleaner than triple)
     track.innerHTML += track.innerHTML;
+
+    // ADD THIS: Make images clickable
+    const images = track.querySelectorAll('img');
+    images.forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openLightbox(img.src));
+    });
+
+    track.addEventListener('mouseenter', () => isPaused = true);
+    track.addEventListener('mouseleave', () => isPaused = false);
 
     let position = 0;
     const singleWidth = track.scrollWidth / 2;
 
     function animate() {
-        position -= speed;
-
-        // Moving LEFT
-        if (speed > 0 && position <= -singleWidth) {
-            position = 0;
+        if (!isPaused) {
+            position -= speed;
+            if (speed > 0 && position <= -singleWidth) position = 0;
+            if (speed < 0 && position >= 0) position = -singleWidth;
+            track.style.transform = `translateX(${position}px)`;
         }
-
-        // Moving RIGHT
-        if (speed < 0 && position >= 0) {
-            position = -singleWidth;
-        }
-
-        track.style.transform = `translateX(${position}px)`;
         requestAnimationFrame(animate);
     }
-
     animate();
 }
 
-// Top row → left
-createInfiniteCarousel("carousel-track", 0.1);
-
-// Bottom row → right
-createInfiniteCarousel("carousel-track1", -0.1);
+// Re-initialize (keep your existing calls)
+createInfiniteCarousel("carousel-track", 0.2);
+createInfiniteCarousel("carousel-track1", -0.2);
 </script>
 
 
+<style>
+    #carousel-track img, #carousel-track1 img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
 
+#carousel-track img:hover, #carousel-track1 img:hover {
+    transform: scale(1.05); /* Slight zoom when hovered */
+    z-index: 50;
+}
+</style>
 
 @endsection
