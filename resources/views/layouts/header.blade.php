@@ -17,6 +17,7 @@
                     <li class="px-4"><a href="{{ url('/about') }}" class="text-gray-700 hover:text-white">Our Story</a></li>
                     <li class="px-4"><a href="{{ url('/services') }}" class="text-gray-700 hover:text-white">Gallery</a></li>
                     <li class="px-4"><a href="{{ url('/contact') }}" class="text-gray-700 hover:text-white">Timeline</a></li>
+                      <li class="px-4"><a href="{{ url('/contact') }}" class="text-gray-700 hover:text-white">Bucket List</a></li>
                 </ul>
             </nav>
         </div>
