@@ -1,7 +1,7 @@
 
-    @if (request()->routeIs('home'))
-        <header class="absolute top-0 left-0 w-full z-50 bg-transparent p-5">  
-    @else
+@if (request()->routeIs(['home', 'ourStory','bucketlist', 'gallery']))
+    <header class="absolute top-0 left-0 w-full z-50 bg-transparent p-5">
+@else
         <header class="top-0 left-0 w-full z-50 bg-transparent p-5">
     @endif
         <div class="w-full px-4 flex items-center justify-between">
