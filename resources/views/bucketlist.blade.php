@@ -3,7 +3,7 @@
 
 {{-- HERO --}}
 
-<section class="pt-50 pb-20 py-20 bg-gradient-to-b from-sky-100 relative via-rose-50 to-white text-center">
+<section class="pt-40 md:pt-48 bg-gradient-to-b from-sky-100 relative via-rose-50 to-white text-center">
     <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-4">
         Our Bucket List
     </h1>

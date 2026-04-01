@@ -2,7 +2,7 @@
 @section('content')
 
 {{-- HERO --}}
-<section class="relative pt-50 pb-16 text-center bg-gradient-to-b from-rose-50 to-white">
+<section class="relative pt-40 md:pt-48 text-center bg-gradient-to-b from-rose-50 to-white">
     <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-4">
         Our Memories
     </h1>
@@ -10,58 +10,61 @@
         Every picture holds a moment, every moment tells our story 💞
     </p>
 </section>
+{{-- UPLOAD FORM --}}
+<section class="py-10 bg-white text-center">
+    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        @csrf
+
+        <input type="file" name="image" required class="block mx-auto">
+
+        <input type="text" name="title" placeholder="Memory Title 💞" class="border px-4 py-2 rounded w-64">
+
+        <input type="text" name="description" placeholder="Short description..." class="border px-4 py-2 rounded w-64">
+
+        <br>
+
+        <button class="bg-rose-500 text-white px-6 py-2 rounded-full">
+            Upload Memory 📸
+        </button>
+    </form>
+</section>
 
 {{-- CAROUSEL 1 --}}
-<div class="relative h-40 md:h-80 overflow-hidden w-full mb-10">
-    <div id="carousel-track" class="flex items-center gap-6 whitespace-nowrap">
+<section class="py-10 bg-white overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+        <div id="carousel-track" class="flex gap-4 w-max">
+            
+            @foreach($memories as $memory)
+                <img src="{{ $memory->image_url }}"
+                     class="h-32 md:h-56 rounded-xl"
+                     data-title="{{ $memory->title }}"
+                     data-desc="{{ $memory->description }}">
+            @endforeach
 
-        <img src="Images/image.jpg" class="h-32 md:h-56 rounded-xl" data-title="Our First Date 💞" data-desc="The day everything started.">
-        <img src="Images/image2.jpg" class="h-32 md:h-56 rounded-xl" data-title="Late Night Talks 🌙" data-desc="We talked until sunrise.">
-        <img src="Images/image3.jpg" class="h-32 md:h-56 rounded-xl" data-title="Random Selfie 📸" data-desc="One of our cutest moments.">
-        <img src="Images/image4.jpg" class="h-32 md:h-56 rounded-xl" data-title="Beach Day 🌊" data-desc="Sun, sea, and you.">
-
-          <img src="Images/image.jpg" class="h-32 md:h-56 rounded-xl" data-title="Our First Date 💞" data-desc="The day everything started.">
-        <img src="Images/image2.jpg" class="h-32 md:h-56 rounded-xl" data-title="Late Night Talks 🌙" data-desc="We talked until sunrise.">
-        <img src="Images/image3.jpg" class="h-32 md:h-56 rounded-xl" data-title="Random Selfie 📸" data-desc="One of our cutest moments.">
-        <img src="Images/image4.jpg" class="h-32 md:h-56 rounded-xl" data-title="Beach Day 🌊" data-desc="Sun, sea, and you.">
-
+        </div>
     </div>
-</div>
+</section>
 
 {{-- MEMORY GRID --}}
 <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-6 columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
 
         {{-- ITEM --}}
+         @foreach($memories as $memory)
         <div class="break-inside-avoid group relative">
-            <img src="Images/image.jpg" 
+            <img src="{{ $memory->image_url }}"
                  class="rounded-2xl w-full cursor-pointer"
-                 onclick="openLightbox(this.src, 'Our First Date 💞', 'The day everything started.')">
+                 onclick="openLightbox(
+                    '{{ $memory->image_url }}',
+                    '{{ $memory->title }}',
+                    '{{ $memory->description }}'
+                 )">
 
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center">
-                <p class="text-white text-lg font-semibold">Our First Date 💞</p>
+                <p class="text-white text-lg font-semibold">{{ $memory->title }}</p>
             </div>
         </div>
-
-        <div class="break-inside-avoid group relative">
-            <img src="Images/image2.jpg" 
-                 class="rounded-2xl w-full cursor-pointer"
-                 onclick="openLightbox(this.src, 'Late Night Talks 🌙', 'We talked until sunrise.')">
-
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center">
-                <p class="text-white text-lg font-semibold">Late Night Talks 🌙</p>
-            </div>
-        </div>
-
-        <div class="break-inside-avoid group relative">
-            <img src="Images/image3.jpg" 
-                 class="rounded-2xl w-full cursor-pointer"
-                 onclick="openLightbox(this.src, 'Random Selfie 📸', 'One of our cutest moments.')">
-
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center">
-                <p class="text-white text-lg font-semibold">Random Selfie 📸</p>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 </section>
@@ -75,21 +78,21 @@
 </section>
 
 {{-- CAROUSEL 2 --}}
-<div class="relative h-40 md:h-80 overflow-hidden w-full mt-10">
-    <div id="carousel-track1" class="flex items-center gap-6 whitespace-nowrap">
+{{-- CAROUSEL 2 --}}
+<section class="py-10 bg-white overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+        <div id="carousel-track1" class="flex gap-4 w-max">
+            
+            @foreach($memories as $memory)
+                <img src="{{ $memory->image_url }}"
+                     class="h-32 md:h-56 rounded-xl"
+                     data-title="{{ $memory->title }}"
+                     data-desc="{{ $memory->description }}">
+            @endforeach
 
-        <img src="Images/image.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image2.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image3.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image4.jpg" class="h-32 md:h-56 rounded-xl">
-
-          <img src="Images/image.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image2.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image3.jpg" class="h-32 md:h-56 rounded-xl">
-        <img src="Images/image4.jpg" class="h-32 md:h-56 rounded-xl">
-
+        </div>
     </div>
-</div>
+</section>
 
 {{-- LIGHTBOX --}}
 <div id="lightbox" class="fixed inset-0 bg-black/90 z-[100] hidden flex flex-col items-center justify-center p-4">
