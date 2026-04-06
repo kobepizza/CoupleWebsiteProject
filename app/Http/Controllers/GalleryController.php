@@ -7,8 +7,14 @@ use Illuminate\Http\Request;
 class GalleryController extends Controller
 {
     public function index() {
-    $memories = Memory::latest()->get();
-    return view('gallery', compact('memories'));
+    $allMemories = \App\Models\Memory::all();
+    $randomEight = \App\Models\Memory::inRandomOrder()->limit(8)->get();
+    
+    return view('gallery', [
+        'allMemories' => $allMemories,
+        'memories' => $randomEight // Keep this name so your grid code doesn't break
+    ]);
+   
 }
 
 public function upload(Request $request) {

@@ -1,5 +1,5 @@
 
-@if (request()->routeIs(['home', 'ourStory','bucketlist', 'gallery']))
+@if (request()->routeIs(['home', 'ourStory','bucketlist', 'gallery', 'oursong']))
     <header class="absolute top-0 left-0 w-full z-50 bg-transparent p-5">
 @else
         <header class="top-0 left-0 w-full z-50 bg-transparent p-5">
@@ -14,10 +14,10 @@
             <nav>
                 <ul class="flex space-x-6 ">
                     <li class="px-4"><a href="{{ url('/') }}" class="text-gray-700 hover:text-white">Home</a></li>
-                    <li class="px-4"><a href="{{ url('/about') }}" class="text-gray-700 hover:text-white">Our Story</a></li>
-                    <li class="px-4"><a href="{{ url('/services') }}" class="text-gray-700 hover:text-white">Gallery</a></li>
-                    <li class="px-4"><a href="{{ url('/contact') }}" class="text-gray-700 hover:text-white">Timeline</a></li>
-                      <li class="px-4"><a href="{{ url('/contact') }}" class="text-gray-700 hover:text-white">Bucket List</a></li>
+                    <li class="px-4"><a href="{{ url('/gallery') }}" class="text-gray-700 hover:text-white">Gallery</a></li>
+                    <li class="px-4"><a href="{{ url('/ourStory') }}" class="text-gray-700 hover:text-white">Our Story</a></li>
+                    <li class="px-4"><a href="{{ url('/songs') }}" class="text-gray-700 hover:text-white">Our Song</a></li>
+                    <li class="px-4"><a href="{{ url('/bucketlist') }}" class="text-gray-700 hover:text-white">Bucket List</a></li>
                 </ul>
             </nav>
         </div>
