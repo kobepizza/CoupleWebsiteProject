@@ -2,7 +2,7 @@
 @section('content')
 
 {{-- HERO / NOW PLAYING --}}
-<section class="pt-40 md:pt-48 pb-20 bg-gradient-to-b from-indigo-100 via-rose-50 to-white text-center">
+<section class="pt-40 md:pt-48 pb-20 bg-gradient-to-b relative from-indigo-100 via-rose-50 to-white text-center">
     <div class="max-w-4xl mx-auto px-6">
         <div class="inline-block p-1 px-4 bg-indigo-500 text-white rounded-full text-xs font-bold tracking-widest uppercase mb-6 animate-pulse">
             Currently on Repeat 🎧

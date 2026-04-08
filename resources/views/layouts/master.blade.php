@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mi Amore</title>
+        <title>Bryan & Kaye ❤️</title>
          @vite(['resources/css/app.css', 'resources/js/app.js'])
       <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,7 +162,7 @@
 
     <style>
     body {
-        font-family:'Funnel Display', 'Indie Flower',"Caveat" ;
+        font-family:"Caveat",'Indie Flower','Funnel Display' ;
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: normal;
